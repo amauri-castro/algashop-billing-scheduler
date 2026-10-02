@@ -27,6 +27,11 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	set('springCloudVersion', "2025.1.0")
+	set('springCloudAwsVersion', "4.0.0")
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-restclient'
@@ -34,6 +39,9 @@ dependencies {
 	implementation ('org.springframework.boot:spring-boot-starter-webmvc') {
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
 	}
+	implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:${springCloudAwsVersion}")
+	implementation 'io.awspring.cloud:spring-cloud-aws-starter-secrets-manager'
+	implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store'
 
 	runtimeOnly 'org.postgresql:postgresql'
 	compileOnly 'org.projectlombok:lombok'
